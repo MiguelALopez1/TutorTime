@@ -9,5 +9,123 @@
         android:id="@+id/launchFragment"
         android:name="com.example.tutortime.LaunchFragment"
         android:label="fragment_launch"
-        tools:layout="@layout/fragment_launch" />
+        tools:layout="@layout/fragment_launch" >
+        <action
+            android:id="@+id/action_launchFragment_to_homeStudentFragment"
+            app:destination="@id/homeStudentFragment" />
+        <action
+            android:id="@+id/action_launchFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_launchFragment_to_tutorHomeFragment"
+            app:destination="@id/tutorHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeStudentFragment"
+        android:name="com.example.tutortime.HomeStudentFragment"
+        android:label="fragment_home_student"
+        tools:layout="@layout/fragment_home_student" >
+        <action
+            android:id="@+id/action_homeStudentFragment_to_studentSettingsFragment"
+            app:destination="@id/studentSettingsFragment" />
+        <action
+            android:id="@+id/action_homeStudentFragment_to_studentProfilePrivateFragment"
+            app:destination="@id/studentProfilePrivateFragment" />
+        <action
+            android:id="@+id/action_homeStudentFragment_to_studentMessageFragment"
+            app:destination="@id/studentMessageFragment" />
+        <action
+            android:id="@+id/action_homeStudentFragment_to_findTutorFragment"
+            app:destination="@id/findTutorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.tutortime.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/studentSettingsFragment"
+        android:name="com.example.tutortime.StudentSettingsFragment"
+        android:label="fragment_student_settings"
+        tools:layout="@layout/fragment_student_settings" />
+    <fragment
+        android:id="@+id/studentProfilePrivateFragment"
+        android:name="com.example.tutortime.StudentProfilePrivateFragment"
+        android:label="fragment_student_profile_private"
+        tools:layout="@layout/fragment_student_profile_private" />
+    <fragment
+        android:id="@+id/studentMessageFragment"
+        android:name="com.example.tutortime.StudentMessageFragment"
+        android:label="fragment_student_message"
+        tools:layout="@layout/fragment_student_message" />
+    <fragment
+        android:id="@+id/findTutorFragment"
+        android:name="com.example.tutortime.FindTutorFragment"
+        android:label="fragment_find_tutor"
+        tools:layout="@layout/fragment_find_tutor" >
+        <action
+            android:id="@+id/action_findTutorFragment_to_studentProfilePublicFragment"
+            app:destination="@id/studentProfilePublicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentProfilePublicFragment"
+        android:name="com.example.tutortime.studentProfilePublicFragment"
+        android:label="fragment_student_profile_public"
+        tools:layout="@layout/fragment_student_profile_public" >
+        <action
+            android:id="@+id/action_studentProfilePublicFragment_to_requestFragment"
+            app:destination="@id/requestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestFragment"
+        android:name="com.example.tutortime.requestFragment"
+        android:label="fragment_request"
+        tools:layout="@layout/fragment_request" />
+    <fragment
+        android:id="@+id/tutorHomeFragment"
+        android:name="com.example.tutortime.tutorHomeFragment"
+        android:label="fragment_tutor_home"
+        tools:layout="@layout/fragment_tutor_home" >
+        <action
+            android:id="@+id/action_tutorHomeFragment_to_tutorSettingsFragment"
+            app:destination="@id/tutorSettingsFragment" />
+        <action
+            android:id="@+id/action_tutorHomeFragment_to_tutorProfilePrivateFragment"
+            app:destination="@id/tutorProfilePrivateFragment" />
+        <action
+            android:id="@+id/action_tutorHomeFragment_to_tutorMessageFragment"
+            app:destination="@id/tutorMessageFragment" />
+        <action
+            android:id="@+id/action_tutorHomeFragment_to_requestListFragment"
+            app:destination="@id/requestListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorSettingsFragment"
+        android:name="com.example.tutortime.tutorSettingsFragment"
+        android:label="fragment_tutor_settings"
+        tools:layout="@layout/fragment_tutor_settings" />
+    <fragment
+        android:id="@+id/tutorProfilePrivateFragment"
+        android:name="com.example.tutortime.tutorProfilePrivateFragment"
+        android:label="fragment_tutor_profile_private"
+        tools:layout="@layout/fragment_tutor_profile_private" />
+    <fragment
+        android:id="@+id/tutorMessageFragment"
+        android:name="com.example.tutortime.tutorMessageFragment"
+        android:label="fragment_tutor_message"
+        tools:layout="@layout/fragment_tutor_message" />
+    <fragment
+        android:id="@+id/requestListFragment"
+        android:name="com.example.tutortime.requestListFragment"
+        android:label="fragment_request_list"
+        tools:layout="@layout/fragment_request_list" >
+        <action
+            android:id="@+id/action_requestListFragment_to_tutorProfilePublicFragment"
+            app:destination="@id/tutorProfilePublicFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorProfilePublicFragment"
+        android:name="com.example.tutortime.tutorProfilePublicFragment"
+        android:label="fragment_tutor_profile_public"
+        tools:layout="@layout/fragment_tutor_profile_public" />
 </navigation>
