@@ -1,14 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StudentSettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/settingText"
+        android:layout_width="414dp"
+        android:layout_height="83dp"
+        android:background="@drawable/bottom_rounded_background_setting"
+        android:gravity="center"
+        android:text="Setting"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/language"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/language"
+        android:layout_width="180dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Language :"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingText"
+        app:layout_constraintBottom_toTopOf="@id/languageSpinner"/>
+
+    <TextView
+        android:id="@+id/privacy"
+        android:layout_width="180dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:text="Privacy :"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="194dp" />
+
+    <TextView
+        android:id="@+id/genderPreference"
+        android:layout_width="180dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:text="Gender Preference :"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="297dp" />
+
+    <TextView
+        android:id="@+id/distanceRange"
+        android:layout_width="180dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:text="Language :"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="400dp" />
+
+    <TextView
+        android:id="@+id/language5"
+        android:layout_width="180dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:text="Language :"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="503dp" />
+
+    <Spinner
+        android:id="@+id/languageSpinner"
+        android:layout_width="309dp"
+        android:layout_height="52dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/language" />
+
+    <Spinner
+        android:id="@+id/privacySpinner"
+        android:layout_width="309dp"
+        android:layout_height="52dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="245dp" />
+
+    <Spinner
+        android:id="@+id/genderSpineer"
+        android:layout_width="309dp"
+        android:layout_height="52dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="348dp" />
+
+    <Spinner
+        android:id="@+id/distanceSpineer"
+        android:layout_width="309dp"
+        android:layout_height="52dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="451dp" />
+
+    <Spinner
+        android:id="@+id/budgetSpineer"
+        android:layout_width="309dp"
+        android:layout_height="52dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="554dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
