@@ -73,8 +73,8 @@
         android:label="fragment_student_profile_public"
         tools:layout="@layout/fragment_student_profile_public" >
         <action
-            android:id="@+id/action_studentProfilePublicFragment_to_requestFragment"
-            app:destination="@id/requestFragment" />
+            android:id="@+id/action_studentProfilePublicFragment_to_avialabilityFragment"
+            app:destination="@id/avialabilityFragment" />
     </fragment>
     <fragment
         android:id="@+id/requestFragment"
@@ -128,4 +128,13 @@
         android:name="com.example.tutortime.tutorProfilePublicFragment"
         android:label="fragment_tutor_profile_public"
         tools:layout="@layout/fragment_tutor_profile_public" />
+    <fragment
+        android:id="@+id/avialabilityFragment"
+        android:name="com.example.tutortime.avialabilityFragment"
+        android:label="fragment_avialability"
+        tools:layout="@layout/fragment_avialability" >
+        <action
+            android:id="@+id/action_avialabilityFragment_to_requestFragment"
+            app:destination="@id/requestFragment" />
+    </fragment>
 </navigation>

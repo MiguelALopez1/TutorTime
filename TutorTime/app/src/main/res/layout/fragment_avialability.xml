@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudentMessageFragment">
+    tools:context=".avialabilityFragment">
 
     <TextView
         android:id="@+id/topBanner"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:text="Your Messages"
-        android:textSize="45sp"
+        android:layout_height="150dp"
+        android:text="Weekly \n Schedule"
+        android:textSize="50sp"
         android:textColor="@color/white"
         android:background="@color/dark_blue"
         android:gravity="center"
@@ -22,14 +22,14 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMessages"
+        android:id="@+id/recyclerViewAvailability"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/topBanner"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/topBanner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/student_message_items" />
+        tools:listitem="@layout/item_availability" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
