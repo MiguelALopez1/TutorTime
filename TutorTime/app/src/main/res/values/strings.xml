@@ -32,4 +32,14 @@
         <item>$51 - $100 / hour</item>
         <item>more than $101 / hour</item>
     </string-array>
+    <string-array name="status">
+        <item>Avialable</item>
+        <item>Unavialable</item>
+    </string-array>
+    <string-array name="price">
+        <item>$15 - $20 / hour</item>
+        <item>$21 - $50 / hour</item>
+        <item>$51 - $100 / hour</item>
+        <item>more than $101 / hour</item>
+    </string-array>
 </resources>

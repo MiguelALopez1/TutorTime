@@ -1,14 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".tutorSettingsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:layout_height="wrap_content">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        tools:context=".tutorSettingsFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/settingText"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:background="@drawable/bottom_rounded_background_setting"
+            android:gravity="center"
+            android:text="Setting"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@id/language"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/language"
+            android:layout_width="180dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="8dp"
+            android:text="Language :"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingText"
+            app:layout_constraintBottom_toTopOf="@id/languageSpinner"/>
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="180dp"
+            android:layout_height="51dp"
+            android:text="Status :"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/statusSpiner"
+            app:layout_constraintTop_toBottomOf="@+id/languageSpinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <TextView
+            android:id="@+id/distanceRange"
+            android:layout_width="366dp"
+            android:layout_height="49dp"
+            android:text="Distance Range:"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/distanceSpineer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.404"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/statusSpiner" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="360dp"
+            android:layout_height="50dp"
+            android:text="Price :"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/priceSpineer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.414"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/distanceSpineer" />
+
+        <Spinner
+            android:id="@+id/languageSpinner"
+            android:layout_width="309dp"
+            android:layout_height="52dp"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/language"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.133"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/language" />
+
+
+        <Spinner
+            android:id="@+id/statusSpiner"
+            android:layout_width="309dp"
+            android:layout_height="52dp"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/distanceRange"
+            app:layout_constraintTop_toBottomOf="@+id/status"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/distanceSpineer"
+            android:layout_width="309dp"
+            android:layout_height="52dp"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/price"
+            app:layout_constraintTop_toBottomOf="@+id/distanceRange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Spinner
+            android:id="@+id/priceSpineer"
+            android:layout_width="309dp"
+            android:layout_height="52dp"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/report"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.156"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price" />
+
+        <Button
+            android:id="@+id/report"
+            android:layout_width="242dp"
+            android:layout_height="114dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/red"
+            android:text="Report Student"
+            android:textSize="37sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/priceSpineer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
