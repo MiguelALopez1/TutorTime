@@ -6,4 +6,30 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string-array name="language">
+        <item>English</item>
+        <item>French</item>
+        <item>spanish</item>
+    </string-array>
+    <string-array name="privacy">
+        <item>Public Profile</item>
+        <item>Private Progile</item>
+    </string-array>
+    <string-array name="genderPrefer">
+        <item>Any</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="distance">
+        <item>0 - 5 miles</item>
+        <item>6 - 15 miles</item>
+        <item>16 - 30 miles</item>
+        <item>more than 30 miles</item>
+    </string-array>
+    <string-array name="budget">
+        <item>$15 - $20 / hour</item>
+        <item>$21 - $50 / hour</item>
+        <item>$51 - $100 / hour</item>
+        <item>more than $101 / hour</item>
+    </string-array>
 </resources>
