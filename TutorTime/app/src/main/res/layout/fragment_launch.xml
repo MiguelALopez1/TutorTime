@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".LaunchFragment">
 
     <ImageView
@@ -23,6 +23,7 @@
         android:id="@+id/username"
         android:layout_width="324dp"
         android:layout_height="76dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="@string/username"
         android:inputType="text"
@@ -51,24 +52,39 @@
         android:id="@+id/login"
         android:layout_width="319dp"
         android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/dark_blue"
         android:text="@string/login"
         android:textSize="30sp"
-        android:backgroundTint="@color/dark_blue"
         app:layout_constraintBottom_toTopOf="@+id/register"
-        app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="319dp"
         android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/dark_blue"
         android:text="@string/register"
         android:textSize="30sp"
-        android:backgroundTint="@color/dark_blue"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login_student"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login" />
+
+    <Button
+        android:id="@+id/login_student"
+        android:layout_width="325dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Login Student(Admin Only)"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register" />
 </androidx.constraintlayout.widget.ConstraintLayout>
