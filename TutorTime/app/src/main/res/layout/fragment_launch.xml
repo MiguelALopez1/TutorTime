@@ -11,6 +11,7 @@
         android:id="@+id/imageView"
         android:layout_width="412dp"
         android:layout_height="238dp"
+        android:layout_marginTop="12dp"
         android:src="@drawable/tutor_time_logo_circle"
         app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
