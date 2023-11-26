@@ -13,7 +13,7 @@ Tutor Time is designed to be a highly interactive and customizable platform for 
 
 In summary, Tutor Time works by creating an environment where students and tutors can effortlessly find their ideal educational matches. It combines intuitive profile matching with a comprehensive rating system and efficient conversation management, all within a flexible and user-friendly platform. This approach empowers users to tailor their educational experience to their specific needs and preferences, making Tutor Time a revolutionary tool in the realm of educational connections.
 ### Where are we now in Development?
-Tutor Time is yet to be aviable to the public, currently we just finished making all the fragments and navigation between them. Now we are focusing on the bulk of the backend. We expect it a beta version to be aviable soon. Here are some images of what we have done so far!
+Tutor Time is yet to be aviable to the public, currently we just finished making all the fragments and navigation between them. Now we are focusing on the bulk of the backend. We expect a beta version to be aviable soon. Here are some images of what we have done so far!
 
 ---
 <img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180047195090984/nav_graph.png?ex=657534ac&is=6562bfac&hm=34d022c7f8767d4c6d30406cdc6614ed22ea2514f90557887816670888a83761&" width="400" height="250">
