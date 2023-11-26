@@ -25,6 +25,8 @@ Tutor Time is yet to be aviable to the public, currently we just finished making
   </tr>
 </table>
 
+Here some example Fragments we have been working on!
+
 <table>
   <tr>
     <td><img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180046301704303/launch.jpg" width="185" height="400" alt="Launch Image"></td>
