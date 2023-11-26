@@ -16,14 +16,30 @@ In summary, Tutor Time works by creating an environment where students and tutor
 Tutor Time is yet to be aviable to the public, currently we just finished making all the fragments and navigation between them. Now we are focusing on the bulk of the backend. We expect a beta version to be aviable soon. Here are some images of what we have done so far!
 
 ---
-<img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180047195090984/nav_graph.png?ex=657534ac&is=6562bfac&hm=34d022c7f8767d4c6d30406cdc6614ed22ea2514f90557887816670888a83761&" width="400" height="250">
+<table>
+  <tr>
+    <td><img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180047195090984/nav_graph.png?ex=657534ac&is=6562bfac&hm=34d022c7f8767d4c6d30406cdc6614ed22ea2514f90557887816670888a83761&" width="400" height="250"></td>
+  </tr>
+  <tr>
+    <td>Navigation Graph</td>
+  </tr>
+</table>
 
-<div>
-  <img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180046301704303/launch.jpg" width="200" height="400">
-  <img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180046620475483/studenthome.jpg" width="200" height="400">
-  <img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180045982924880/profile.jpg" width="200" height="400">
-  <img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180046893088788/studentsettings.jpg" width="200" height="400">
-</div>
+<table>
+  <tr>
+    <td><img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180046301704303/launch.jpg" width="185" height="400" alt="Launch Image"></td>
+    <td><img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180046620475483/studenthome.jpg" width="185" height="400" alt="Student Home Image"></td>
+    <td><img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180045982924880/profile.jpg" width="185" height="400" alt="Profile Image"></td>
+    <td><img src="https://cdn.discordapp.com/attachments/643563629504888834/1178180046893088788/studentsettings.jpg" width="185" height="400" alt="Student Settings Image"></td>
+  </tr>
+  <tr>
+    <td>Launch Fragment</td>
+    <td>Student Home Fragment</td>
+    <td>Student Private Profile Fragment</td>
+    <td>Student Settings Fragment</td>
+  </tr>
+</table>
+
 
 Keep in mind these fragment are still WIP we will update them when we start adding the backend!
 ## THANK YOU FOR VISTING!!!
