@@ -63,5 +63,5 @@
         app:layout_constraintTop_toBottomOf="@+id/tap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/recyclerviewfindtutor"/>
+        tools:listitem="@layout/item_recyclerviewfindtutor"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

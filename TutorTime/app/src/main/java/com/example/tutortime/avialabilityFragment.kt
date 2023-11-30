@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.widget.TextView
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.tutortime.databinding.FragmentAvialabilityBinding
+import com.example.tutortime.databinding.FragmentFindTutorBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -17,15 +18,17 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class avialabilityFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    // Binding
+    private var _binding: FragmentAvialabilityBinding? = null
+    private val binding get() = _binding!!
+    // Adapter
+    private lateinit var adapter: avialabilityFragment.AvailabilityAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -33,27 +36,69 @@ class avialabilityFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_avialability, container, false)
+
+        // Inflate the layout for this fragment + Binding
+        _binding = FragmentAvialabilityBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        // RecyclerView Setup
+        val recyclerView = binding.recyclerViewAvailability
+        adapter = AvailabilityAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment avialabilityFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            avialabilityFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    /**
+     * The adapter for the RecyclerView. Provides the list of items to be displayed there.
+     */
+    inner class AvailabilityAdapter :
+        RecyclerView.Adapter<AvailabilityAdapter.AvailabilityViewHolder>() {
+
+        //a list of the movie items to load into the RecyclerView
+        private var availabilities = emptyList<AvailabilityItem>()
+
+        internal fun setAvailabilities(availability: List<AvailabilityItem>) {
+            this.availabilities = availability
+            notifyDataSetChanged()
+        }
+
+        override fun getItemCount(): Int {
+            return availabilities.size
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvailabilityViewHolder {
+            val v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_recyclerviewfindtutor, parent, false)
+            return AvailabilityViewHolder(v)
+        }
+
+        override fun onBindViewHolder(holder: AvailabilityViewHolder, position: Int) {
+
+            // Add day
+            holder.view.findViewById<TextView>(R.id.textViewDay).text = availabilities[position].day
+
+            // Add button info
+            holder.view.findViewById<TextView>(R.id.buttonTimeSlot).text =
+                availabilities[position].startTime + " - " + availabilities[position].endTime
+
+            // When ViewHolder is pressed
+            holder.itemView.setOnClickListener {
+                // Opens the profile fragment
+                holder.view.findNavController().navigate(R.id.action_avialabilityFragment_to_requestFragment)
+            }
+        }
+
+        inner class AvailabilityViewHolder(val view: View) : RecyclerView.ViewHolder(view),
+            View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (view != null) {
+
                 }
             }
+        }
+
     }
 }
