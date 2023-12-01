@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import kotlin.math.log
 
 class LaunchFragment : Fragment() {
     // ...
@@ -53,7 +54,6 @@ class LaunchFragment : Fragment() {
         loginStudentButton.setOnClickListener {
             findNavController().navigate(R.id.action_launchFragment_to_homeStudentFragment)
         }
-
         return view
     }
 
@@ -62,7 +62,6 @@ class LaunchFragment : Fragment() {
             Toast.makeText(context, "Email and password cannot be empty", Toast.LENGTH_SHORT).show()
             return
         }
-
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
@@ -73,33 +72,35 @@ class LaunchFragment : Fragment() {
                 updateUI(null)
             }
         }
-
-
     }
-
     private fun updateUI(user: FirebaseUser?) {
-
-
         if (user != null) {
-            user.uid.let { uid ->
-                databaseRef.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        if (snapshot.exists()) {
-                            val name = snapshot.child("name").getValue(String::class.java)
-
-                            Log.d("IS SOMETHING HERE?!?!?!?!?!?!?!?!?!", "User role: $name")
-                        }
-                    }
-
-                    override fun onCancelled(error: DatabaseError) {
-
-                    }
-                })
+            isStudent(user) {
+                if (it)
+                {
+                    findNavController().navigate(R.id.action_launchFragment_to_homeStudentFragment)
+                }
+                else
+                {
+                    findNavController().navigate(R.id.action_launchFragment_to_tutorHomeFragment)
+                }
             }
-
-            // User is signed in
-            findNavController().navigate(R.id.homeStudentFragment)
         }
+    }
+    private fun isStudent(user: FirebaseUser, callback: (Boolean) -> Unit)
+    {
+        var student = false
+        databaseRef.orderByChild("userId").equalTo(user.uid).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (userSnapshot in snapshot.children) {
+                    student = userSnapshot.child("student").value as Boolean
+                }
+                callback(student)
+            }
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 
 }
