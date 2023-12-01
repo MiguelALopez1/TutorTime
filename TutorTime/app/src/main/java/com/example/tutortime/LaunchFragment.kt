@@ -1,6 +1,7 @@
 package com.example.tutortime
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +12,21 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 
 class LaunchFragment : Fragment() {
-    private lateinit var auth: FirebaseAuth
     // ...
     // Initialize Firebase Auth
+    private lateinit var auth: FirebaseAuth
+    private lateinit var databaseRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+
+        databaseRef = FirebaseDatabase.getInstance().reference
+            .child("Users")
     }
 
     override fun onCreateView(
@@ -67,10 +73,30 @@ class LaunchFragment : Fragment() {
                 updateUI(null)
             }
         }
+
+
     }
 
     private fun updateUI(user: FirebaseUser?) {
+
+
         if (user != null) {
+
+            val databaseRef = FirebaseDatabase.getInstance().reference.child("users")
+            databaseRef.orderByChild("userId").equalTo(user.uid).addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (data in snapshot.children) {
+
+                        Log.d("IS SOMETHING HERE?!?!?!?!?!?!?!?!?!", data.value.toString())
+                        Log.d("WHAT ABOUT HERE?!?!?!?!?!?!?!?!?!", data.key.toString())
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Handle error
+                }
+            })
             // User is signed in
             findNavController().navigate(R.id.homeStudentFragment)
         }
