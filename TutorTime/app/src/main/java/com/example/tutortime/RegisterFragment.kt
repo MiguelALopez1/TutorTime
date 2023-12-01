@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -37,6 +38,20 @@ class RegisterFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_register, container, false)
 
         val createAccountButton: Button = view.findViewById(R.id.createAccount)
+        val userType: RadioGroup = view.findViewById(R.id.userType)
+
+        userType.setOnCheckedChangeListener{group, checkedId ->
+            if(checkedId == R.id.studentType)
+            {
+
+            }
+
+            if(checkedId == R.id.tutorType)
+            {
+
+            }
+        }
+
         createAccountButton.setOnClickListener { createAccount(view) }
 
         return view

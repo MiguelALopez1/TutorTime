@@ -93,6 +93,7 @@
         />
 
     <RadioGroup
+        android:id="@+id/userType"
         android:layout_width="324dp"
         android:layout_height="101dp"
         android:layout_marginTop="12dp"
@@ -111,7 +112,7 @@
             android:text="Student" />
 
         <RadioButton
-            android:id="@+id/TutorType"
+            android:id="@+id/tutorType"
             android:layout_width="wrap_content"
             android:layout_height="101dp"
             android:layout_weight="1"
