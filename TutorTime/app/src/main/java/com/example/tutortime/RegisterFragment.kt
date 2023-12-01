@@ -12,17 +12,22 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 
 class RegisterFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var databaseRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        databaseRef = FirebaseDatabase.getInstance().reference
+            .child("Users")
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,10 +43,12 @@ class RegisterFragment : Fragment() {
     }
 
     private fun createAccount(view: View) {
+        val nameEditText: EditText = view.findViewById(R.id.name)
         val emailEditText: EditText = view.findViewById(R.id.email)
         val passwordEditText: EditText = view.findViewById(R.id.password)
         val confrimPasswordEditText: EditText = view.findViewById(R.id.confirmPassword)
 
+        val name = nameEditText.text.toString().trim()
         val email = emailEditText.text.toString().trim()
         val password = passwordEditText.text.toString().trim()
         val comfrim_password = confrimPasswordEditText.text.toString().trim()
@@ -63,6 +70,18 @@ class RegisterFragment : Fragment() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("RegisterFragment", "createUserWithEmail:success")
                     val user = auth.currentUser
+
+                    if (user != null) {
+                        if (1 == 1) {
+                            addUser(name, user.uid, true) // Student
+                        }
+
+                        else {
+                            addUser(name, user.uid, false) // Tutor
+                        }
+                    }
+
+
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -71,6 +90,15 @@ class RegisterFragment : Fragment() {
                     updateUI(null)
                 }
             }
+    }
+
+
+    private fun addUser(name: String, id: String, student: Boolean) {
+        val user = UserItem(name, id, student)
+        databaseRef.push().setValue(user)
+            .addOnCompleteListener {
+            }
+
     }
 
     private fun updateUI(user: FirebaseUser?) {
