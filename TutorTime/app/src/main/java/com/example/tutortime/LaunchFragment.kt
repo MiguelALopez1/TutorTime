@@ -81,22 +81,22 @@ class LaunchFragment : Fragment() {
 
 
         if (user != null) {
+            user.uid.let { uid ->
+                databaseRef.child(uid).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        if (snapshot.exists()) {
+                            val name = snapshot.child("name").getValue(String::class.java)
 
-            val databaseRef = FirebaseDatabase.getInstance().reference.child("users")
-            databaseRef.orderByChild("userId").equalTo(user.uid).addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (data in snapshot.children) {
-
-                        Log.d("IS SOMETHING HERE?!?!?!?!?!?!?!?!?!", data.value.toString())
-                        Log.d("WHAT ABOUT HERE?!?!?!?!?!?!?!?!?!", data.key.toString())
+                            Log.d("IS SOMETHING HERE?!?!?!?!?!?!?!?!?!", "User role: $name")
+                        }
                     }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    // Handle error
-                }
-            })
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+            }
+
             // User is signed in
             findNavController().navigate(R.id.homeStudentFragment)
         }
