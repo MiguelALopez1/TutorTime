@@ -21,6 +21,7 @@ class RegisterFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseRef: DatabaseReference
+    private var student: Boolean = false // Identifies whether the user is a student or not
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,14 +42,12 @@ class RegisterFragment : Fragment() {
         val userType: RadioGroup = view.findViewById(R.id.userType)
 
         userType.setOnCheckedChangeListener{group, checkedId ->
-            if(checkedId == R.id.studentType)
-            {
-
+            if(checkedId == R.id.studentType) {
+                student = true
             }
 
-            if(checkedId == R.id.tutorType)
-            {
-
+            if(checkedId == R.id.tutorType) {
+                student = false
             }
         }
 
@@ -87,7 +86,7 @@ class RegisterFragment : Fragment() {
                     val user = auth.currentUser
 
                     if (user != null) {
-                        if (1 == 1) {
+                        if (student) {
                             addUser(name, user.uid, true) // Student
                         }
 
@@ -95,8 +94,6 @@ class RegisterFragment : Fragment() {
                             addUser(name, user.uid, false) // Tutor
                         }
                     }
-
-
                     updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
