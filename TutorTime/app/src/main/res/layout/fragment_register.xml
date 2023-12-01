@@ -26,12 +26,13 @@
         android:id="@+id/name"
         android:layout_width="324dp"
         android:layout_height="76dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="text"
         android:textSize="30sp"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topBanner" />
 
@@ -39,12 +40,13 @@
         android:id="@+id/email"
         android:layout_width="324dp"
         android:layout_height="76dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="text"
         android:textSize="30sp"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -52,12 +54,13 @@
         android:id="@+id/password"
         android:layout_width="324dp"
         android:layout_height="76dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="text"
         android:textSize="30sp"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -65,12 +68,13 @@
         android:id="@+id/confirmPassword"
         android:layout_width="324dp"
         android:layout_height="76dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="text"
         android:textSize="30sp"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -87,5 +91,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+    <RadioGroup
+        android:layout_width="324dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword" >
+
+        <RadioButton
+            android:id="@+id/studentType"
+            android:layout_width="67dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:text="Student" />
+
+        <RadioButton
+            android:id="@+id/TutorType"
+            android:layout_width="wrap_content"
+            android:layout_height="101dp"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:text="Tutor" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

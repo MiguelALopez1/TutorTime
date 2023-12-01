@@ -1,3 +1,5 @@
+package com.example.tutortime
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,13 +9,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.tutortime.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class LaunchFragment : Fragment() {
-
     private lateinit var auth: FirebaseAuth
+    // ...
+    // Initialize Firebase Auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +63,7 @@ class LaunchFragment : Fragment() {
                 updateUI(auth.currentUser)
             } else {
                 // If sign in fails, display a message to the user.
-                Toast.makeText(context, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Username or Password is not exist. Please try again: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 updateUI(null)
             }
         }
@@ -71,8 +73,6 @@ class LaunchFragment : Fragment() {
         if (user != null) {
             // User is signed in
             findNavController().navigate(R.id.homeStudentFragment)
-        } else {
-            Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show()
         }
     }
 
