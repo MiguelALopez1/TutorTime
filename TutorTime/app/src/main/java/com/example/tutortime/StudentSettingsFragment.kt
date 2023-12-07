@@ -19,11 +19,7 @@ import java.util.UUID
 
 class StudentSettingsFragment : Fragment() {
     private lateinit var databaseRef: DatabaseReference
-    private val model: UserViewModel by activityViewModels()
-
-    // ViewModel
     private val userModel: UserViewModel by activityViewModels()
-
     // Binding
     private var _binding: FragmentStudentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -47,19 +43,6 @@ class StudentSettingsFragment : Fragment() {
         var privacytext: String? = null
         var distanctext: String? = null
         var languagetext: String? = null
-        var settings: Any? = null
-
-        databaseRef.orderByChild("userId").equalTo(model.user_id).addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (userSnapshot in snapshot.children) {
-                    settings = userSnapshot.child("setting").value
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
 
         binding.languageSpinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
@@ -112,14 +95,15 @@ class StudentSettingsFragment : Fragment() {
         databaseRef = FirebaseDatabase.getInstance().reference
             .child("Users").child(userModel.getId()!!).child("Settings")
 
-        val studentSettings = mapOf<String, String>(
-            "Language" to languagetext!!,
-            "Privacy" to privacytext!!,
-            "GanderPreference" to gendertext!!,
-            "DistanceRange" to distanctext!!,
-            "Budget" to budgettext!!)
-
-        addSettings(studentSettings)
+        binding.save.setOnClickListener {
+            val studentSettings = mapOf<String, String>(
+                "Language" to languagetext!!,
+                "Privacy" to privacytext!!,
+                "GanderPreference" to gendertext!!,
+                "DistanceRange" to distanctext!!,
+                "Budget" to budgettext!!)
+            addSettings(studentSettings)
+        }
 
         return view
     }

@@ -40,6 +40,7 @@
             android:id="@+id/languageSpinner"
             android:layout_width="0dp"
             android:layout_height="52dp"
+            android:entries="@array/language"
             app:layout_constraintTop_toBottomOf="@+id/language"
             app:layout_constraintStart_toStartOf="@+id/language"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -61,6 +62,7 @@
             android:id="@+id/statusSpinner"
             android:layout_width="0dp"
             android:layout_height="52dp"
+            android:entries="@array/status"
             app:layout_constraintTop_toBottomOf="@+id/status"
             app:layout_constraintStart_toStartOf="@+id/status"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -78,15 +80,16 @@
             app:layout_constraintTop_toBottomOf="@+id/statusSpinner"
             app:layout_constraintStart_toStartOf="parent" />
 
-
         <Spinner
             android:id="@+id/distanceRangeSpinner"
             android:layout_width="0dp"
             android:layout_height="52dp"
+            android:entries="@array/distance"
+            app:layout_constraintTop_toBottomOf="@+id/distanceRange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/distanceRange"
-            app:layout_constraintTop_toBottomOf="@+id/distanceRange" />
+            />
 
         <TextView
             android:id="@+id/price"
@@ -104,6 +107,7 @@
             android:id="@+id/priceSpinner"
             android:layout_width="0dp"
             android:layout_height="52dp"
+            android:entries="@array/price"
             app:layout_constraintTop_toBottomOf="@+id/price"
             app:layout_constraintStart_toStartOf="@+id/price"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -125,6 +129,7 @@
             android:id="@+id/subjectSpinner"
             android:layout_width="0dp"
             android:layout_height="52dp"
+            android:entries="@array/subjects"
             app:layout_constraintTop_toBottomOf="@+id/subject"
             app:layout_constraintStart_toStartOf="@+id/subject"
             app:layout_constraintEnd_toEndOf="parent" />
