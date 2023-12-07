@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutortime.databinding.FragmentRequestListBinding
+import com.google.firebase.database.*
 
 
 class requestListFragment : Fragment() {
@@ -20,6 +21,10 @@ class requestListFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: requestListFragment.RequestAdapter
+
+    // Database
+    private lateinit var databaseRef: DatabaseReference
+    var requests = mutableListOf<TutorRequestItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +40,36 @@ class requestListFragment : Fragment() {
         adapter = RequestAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+
+        databaseRef = FirebaseDatabase.getInstance().reference
+            .child("Requests")
+
+        databaseRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                requests.clear()
+                for (requestSnapshot in snapshot.children) {
+                    val request = requestSnapshot.key?.let{
+                        TutorRequestItem(requestSnapshot.child("profilePic").value.toString(),
+                            requestSnapshot.child("name").value.toString(),
+                            requestSnapshot.child("subject").value.toString(),
+                            requestSnapshot.child("day").value.toString(),
+                            requestSnapshot.child("startTime").value.toString(),
+                            requestSnapshot.child("endTime").value.toString())
+                    }
+
+                    if (request != null) {
+                        requests.add(request)
+                    }
+                }
+                adapter.setRequests(requests)
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
 
         return view
     }

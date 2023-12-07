@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutortime.databinding.FragmentStudentMessageBinding
+import com.google.firebase.database.*
 
 
 /**
@@ -24,6 +25,10 @@ class StudentMessageFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: StudentMessageFragment.MessagesAdapter
+
+    // Database
+    private lateinit var databaseRef: DatabaseReference
+    var messages = mutableListOf<MessageItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +48,31 @@ class StudentMessageFragment : Fragment() {
         adapter = MessagesAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+        databaseRef = FirebaseDatabase.getInstance().reference
+            .child("Messages")
+
+        databaseRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                messages.clear()
+                for (messageSnapshot in snapshot.children) {
+                    val message = messageSnapshot.key?.let{
+                        MessageItem(messageSnapshot.child("subject").value.toString(),
+                            messageSnapshot.child("preview").value.toString())
+                    }
+
+                    if (message != null) {
+                        messages.add(message)
+                    }
+                }
+                adapter.setMessages(messages)
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
 
         return view
     }

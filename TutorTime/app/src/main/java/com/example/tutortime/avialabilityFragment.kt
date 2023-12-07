@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutortime.databinding.FragmentAvialabilityBinding
 import com.example.tutortime.databinding.FragmentFindTutorBinding
+import com.google.firebase.database.*
 
 /**
  * A simple [Fragment] subclass.
@@ -24,6 +25,10 @@ class avialabilityFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: avialabilityFragment.AvailabilityAdapter
+
+    // Database
+    private lateinit var databaseRef: DatabaseReference
+    var availabilities = mutableListOf<AvailabilityItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +51,33 @@ class avialabilityFragment : Fragment() {
         adapter = AvailabilityAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+
+        databaseRef = FirebaseDatabase.getInstance().reference
+            .child("Availabilities")
+
+        databaseRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                availabilities.clear()
+                for (availabilitySnapshot in snapshot.children) {
+                    val availability = availabilitySnapshot.key?.let{
+                        AvailabilityItem(availabilitySnapshot.child("day").value.toString(),
+                            availabilitySnapshot.child("startTime").value.toString(),
+                            availabilitySnapshot.child("endTime").value.toString())
+                    }
+
+                    if (availability != null) {
+                        availabilities.add(availability)
+                    }
+                }
+                adapter.setAvailabilities(availabilities)
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
 
 
         return view

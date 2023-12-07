@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tutortime.databinding.FragmentFindTutorBinding
+import com.google.firebase.database.*
 
 class FindTutorFragment : Fragment() {
 
@@ -20,6 +21,10 @@ class FindTutorFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: FindTutorsAdapter
+
+    // Database
+    private lateinit var databaseRef: DatabaseReference
+    var tutors = mutableListOf<FindTutorItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +45,32 @@ class FindTutorFragment : Fragment() {
         adapter = FindTutorsAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
+        databaseRef = FirebaseDatabase.getInstance().reference
+            .child("FindTutors")
+
+        databaseRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                tutors.clear()
+                for (tutorSnapshot in snapshot.children) {
+                    val tutor = tutorSnapshot.key?.let{
+                        FindTutorItem(tutorSnapshot.child("profilePic").value.toString(),
+                            tutorSnapshot.child("background").value.toString(),
+                            tutorSnapshot.child("info").value.toString())
+                    }
+
+                    if (tutor != null) {
+                        tutors.add(tutor)
+                    }
+                }
+                adapter.setTutors(tutors)
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
 
 
 
