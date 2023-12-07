@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,8 @@ class StudentMessageFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: StudentMessageFragment.MessagesAdapter
+    // ViewModel
+    private val userModel: UserViewModel by activityViewModels()
 
     // Database
     private lateinit var databaseRef: DatabaseReference
@@ -50,7 +53,7 @@ class StudentMessageFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         databaseRef = FirebaseDatabase.getInstance().reference
-            .child("Users").child("Put the User ID Here").child("Messages")
+            .child("Users").child(userModel.getId()!!).child("Messages")
 
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

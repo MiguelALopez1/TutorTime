@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -20,6 +21,9 @@ class RegisterFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseRef: DatabaseReference
     private var student: Boolean = false // Identifies whether the user is a student or not
+
+    // ViewModel
+    private val userModel: UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +108,8 @@ class RegisterFragment : Fragment() {
 
 
     private fun addUser(name: String, id: String, student: Boolean) {
+
+        userModel.setId(id) // Update the View Model, so fragments can access ID
         var user : UserItem? = null
         if(student)
         {

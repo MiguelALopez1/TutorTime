@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,8 @@ class avialabilityFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: avialabilityFragment.AvailabilityAdapter
+    // ViewModel
+    private val userModel: UserViewModel by activityViewModels()
 
     // Database
     private lateinit var databaseRef: DatabaseReference
@@ -54,7 +57,7 @@ class avialabilityFragment : Fragment() {
 
 
         databaseRef = FirebaseDatabase.getInstance().reference
-            .child("Availabilities")
+            .child("Users").child(userModel.getId()!!).child("Availabilities")
 
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

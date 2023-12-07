@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,8 @@ class FindTutorFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: FindTutorsAdapter
+    // ViewModel
+    private val userModel: UserViewModel by activityViewModels()
 
     // Database
     private lateinit var databaseRef: DatabaseReference
@@ -47,7 +50,7 @@ class FindTutorFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         databaseRef = FirebaseDatabase.getInstance().reference
-            .child("Users").child("Put the User ID Here").child("Tutors")
+            .child("Users").child(userModel.getId()!!).child("Tutors")
 
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -61,9 +61,6 @@ class StudentSettingsFragment : Fragment() {
             }
         })
 
-
-
-
         binding.languageSpinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {

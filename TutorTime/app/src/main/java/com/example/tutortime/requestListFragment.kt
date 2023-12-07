@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,9 @@ class requestListFragment : Fragment() {
     private val binding get() = _binding!!
     // Adapter
     private lateinit var adapter: requestListFragment.RequestAdapter
+
+    // ViewModel
+    private val userModel: UserViewModel by activityViewModels()
 
     // Database
     private lateinit var databaseRef: DatabaseReference
@@ -43,7 +47,7 @@ class requestListFragment : Fragment() {
 
 
         databaseRef = FirebaseDatabase.getInstance().reference
-            .child("Users").child("Put the User ID Here").child("Requests")
+            .child("Users").child(userModel.getId()!!).child("Requests")
 
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
