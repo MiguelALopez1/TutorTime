@@ -11,27 +11,31 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.paging.NullPaddedList
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
+import com.example.tutortime.databinding.FragmentStudentSettingsBinding
+import com.example.tutortime.databinding.FragmentTutorSettingsBinding
+import com.google.firebase.database.*
 import java.util.UUID
 
 
 class StudentSettingsFragment : Fragment() {
     private lateinit var databaseRef: DatabaseReference
     private val model: UserViewModel by activityViewModels()
+
+    // ViewModel
+    private val userModel: UserViewModel by activityViewModels()
+
+    // Binding
+    private var _binding: FragmentStudentSettingsBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view =  inflater.inflate(R.layout.fragment_student_settings, container, false)
-        val language: Spinner = view.findViewById(R.id.languageSpinner)
-        val privacy: Spinner = view.findViewById(R.id.privacySpinner)
-        val gender: Spinner = view.findViewById(R.id.genderSpineer)
-        val distance: Spinner = view.findViewById(R.id.genderSpineer)
-        val budget: Spinner = view.findViewById(R.id.budgetSpineer)
+        // Inflate the layout for this fragment + Binding
+        _binding = FragmentStudentSettingsBinding.inflate(inflater, container, false)
+        val view = binding.root
+
         val save: Button = view.findViewById(R.id.save)
         val budgetarray = resources.getStringArray(R.array.budget)
         val genderarray = resources.getStringArray(R.array.genderPrefer)
@@ -60,7 +64,7 @@ class StudentSettingsFragment : Fragment() {
 
 
 
-        language.onItemSelectedListener = object :
+        binding.languageSpinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 languagetext = languagearray.getOrNull(pos)
@@ -69,7 +73,7 @@ class StudentSettingsFragment : Fragment() {
                 // Another interface callback
             }
         }
-        privacy.onItemSelectedListener = object :
+        binding.privacySpinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 privacytext = privacyarray.getOrNull(pos)
@@ -78,7 +82,7 @@ class StudentSettingsFragment : Fragment() {
                 // Another interface callback
             }
         }
-        gender.onItemSelectedListener = object :
+        binding.genderSpineer.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 gendertext = genderarray.getOrNull(pos)
@@ -87,7 +91,7 @@ class StudentSettingsFragment : Fragment() {
                 // Another interface callback
             }
         }
-        distance.onItemSelectedListener = object :
+        binding.distanceSpineer.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 distanctext = distancearray.getOrNull(pos)
@@ -96,7 +100,7 @@ class StudentSettingsFragment : Fragment() {
                 // Another interface callback
             }
         }
-        budget.onItemSelectedListener = object :
+        binding.budgetSpineer.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
                 budgettext = budgetarray.getOrNull(pos)
@@ -107,11 +111,26 @@ class StudentSettingsFragment : Fragment() {
         }
 
 
+        // Init Database
+        databaseRef = FirebaseDatabase.getInstance().reference
+            .child("Users").child(userModel.getId()!!).child("Settings")
+
+        val studentSettings = mapOf<String, String>(
+            "Language" to languagetext!!,
+            "Privacy" to privacytext!!,
+            "GanderPreference" to gendertext!!,
+            "DistanceRange" to distanctext!!,
+            "Budget" to budgettext!!)
+
+        addSettings(studentSettings)
+
         return view
     }
 
-    fun addNewLocation(latitude: Double?,  longitude: Double?, address: String?, timestamp: String?) {
-
+    private fun addSettings(studentSettings: Map<String, String>) {
+        databaseRef.updateChildren(studentSettings)
+            .addOnCompleteListener {
+            }
     }
 
 

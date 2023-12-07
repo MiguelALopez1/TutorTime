@@ -43,7 +43,7 @@ class requestListFragment : Fragment() {
 
 
         databaseRef = FirebaseDatabase.getInstance().reference
-            .child("Requests")
+            .child("Users").child("Put the User ID Here").child("Requests")
 
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -47,7 +47,7 @@ class FindTutorFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         databaseRef = FirebaseDatabase.getInstance().reference
-            .child("FindTutors")
+            .child("Users").child("Put the User ID Here").child("Tutors")
 
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -49,7 +49,7 @@ class tutorMessageFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         databaseRef = FirebaseDatabase.getInstance().reference
-            .child("Messages")
+            .child("Users").child("Put the User ID Here").child("Messages")
 
         databaseRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
