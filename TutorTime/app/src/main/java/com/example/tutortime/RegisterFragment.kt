@@ -104,10 +104,19 @@ class RegisterFragment : Fragment() {
 
 
     private fun addUser(name: String, id: String, student: Boolean) {
-        val user = UserItem(name, id, student)
-        databaseRef.push().setValue(user)
-            .addOnCompleteListener {
-            }
+        var user : UserItem? = null
+        if(student)
+        {
+            user = UserItem(name, id, student,
+                StudentSettings(null, null, null, null,null))
+        }
+        else
+        {
+            user = UserItem(name, id, student,
+                null,
+                TutorSettings(null, null, null, null,null))
+        }
+        databaseRef.child(id).setValue(user)
 
     }
 

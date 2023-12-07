@@ -1,7 +1,6 @@
 package com.example.tutortime
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,17 +8,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import kotlin.math.log
 
 class LaunchFragment : Fragment() {
     // ...
     // Initialize Firebase Auth
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseRef: DatabaseReference
+    private val model: UserViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +93,7 @@ class LaunchFragment : Fragment() {
         databaseRef.orderByChild("userId").equalTo(user.uid).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (userSnapshot in snapshot.children) {
+                    model.user_id = user.uid
                     student = userSnapshot.child("student").value as Boolean
                 }
                 callback(student)
