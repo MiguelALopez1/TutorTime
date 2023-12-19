@@ -13,6 +13,11 @@ Tutor Time is designed to be a highly interactive and customizable platform for 
 
 In summary, Tutor Time works by creating an environment where students and tutors can effortlessly find their ideal educational matches. It combines intuitive profile matching with a comprehensive rating system and efficient conversation management, all within a flexible and user-friendly platform. This approach empowers users to tailor their educational experience to their specific needs and preferences, making Tutor Time a revolutionary tool in the realm of educational connections.
 ### Where are we now in Development?
+
+## update 2.0
+We implemented support to create a student/tutor account that saves user details to a firebase database server, next update we plan to add the messaging feature!
+
+## update 1.0
 Tutor Time is yet to be aviable to the public, currently we just finished making all the fragments and navigation between them. Now we are focusing on the bulk of the backend. We expect a beta version to be aviable soon. Here are some images of what we have done so far!
 
 ---
